@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner';
 import { FilePond, registerPlugin } from 'react-filepond';
@@ -15,6 +15,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import { UserContext } from '../../context/UserContext';
 import { updateUserInfo } from '../../services/fetchData';
 import { User } from '../../types/User';
+import { FilePondFile } from 'filepond';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType);
 
@@ -22,7 +23,7 @@ const initialUserState = {
   name: '',
   username: '',
   bio: '',
-  is: 0
+  is: 0,
 };
 
 export const EditUserProfile = () => {
@@ -30,7 +31,7 @@ export const EditUserProfile = () => {
   const { userData, setUserData } = useContext(UserContext);
 
   const [state, setState] = useState<User>(initialUserState);
-  const [picture, setPicture] = useState<any[]>([]);
+  const [picture, setPicture] = useState<FilePondFile[]>([]);
   const [toggleBtn, setToggleBtn] = useState<boolean>(false);
 
   useEffect(() => {
@@ -45,12 +46,12 @@ export const EditUserProfile = () => {
     }
   }, [navigate, userData]);
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setToggleBtn(true);
 
@@ -59,12 +60,13 @@ export const EditUserProfile = () => {
     };
 
     if (picture.length) {
-      userUpdate.userPic = picture[0].file;
+      userUpdate.userPic = picture[0].file as File;
     } else {
       userUpdate.userPic = '';
     }
 
     const info = await updateUserInfo(userData.id, userUpdate);
+    console.log(info);
     setState(initialUserState);
     setPicture([]);
 
@@ -104,7 +106,7 @@ export const EditUserProfile = () => {
             <form className="formContainer__details" onSubmit={handleSubmit}>
               <div className="fileInput__filepond">
                 <FilePond
-                  files={picture}
+                  files={picture.map(fileItem => fileItem.file)}
                   allowReorder={true}
                   allowMultiple={false}
                   onupdatefiles={setPicture}
@@ -156,7 +158,7 @@ export const EditUserProfile = () => {
               </div>
               <div className="formContainer__title">
                 <textarea
-                  onChange={handleChange}
+                  onChange={() => handleChange}
                   className="formTitle__input focus:ring-0"
                   name="bio"
                   id="bioInput"

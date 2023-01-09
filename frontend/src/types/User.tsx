@@ -22,15 +22,5 @@ export type User = {
 
   bio?:string;
   username?:string;
-  userPic?:string;
+  userPic?:string | File;
 };
-
-// export type User = {
-//   email?: string | undefined;
-//   email_verified?: boolean | undefined;
-//   name: string;
-//   nickname: string;
-//   picture: string;
-//   sub?: string | undefined;
-//   updated_at?: string | undefined;
-// };

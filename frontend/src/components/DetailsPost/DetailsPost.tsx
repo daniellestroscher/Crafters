@@ -17,7 +17,7 @@ import { postDetails, defaultPost, comment } from '../../types/Post';
 
 export const DetailsPost = () => {
   const { id } = useParams();
-  const { userData } = useContext<any>(UserContext);
+  const { userData } = useContext(UserContext);
   const navigate = useNavigate();
   const [comments, setComments] = useState<comment[]>([]);
   const [post, setPost] = useState<postDetails>(defaultPost);

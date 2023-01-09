@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
 
 import './CommentInput.css';
@@ -15,8 +15,8 @@ export const CommentInput = ({ idUser, idPost, setComments }: CommentInputProps)
   const [comment, setComment] = useState<string>('');
   const [height, setHeight] = useState<number>(40);
 
-  const keyUpHandler = (e: any) => {
-    let scHeight = e.target.scrollHeight;
+  const keyUpHandler = (e: React.KeyboardEvent) => {
+    let scHeight = e.currentTarget.scrollHeight as number;
     if (height < 64) {
       if (scHeight < 64) setHeight(scHeight);
       else setHeight(64);
@@ -25,7 +25,7 @@ export const CommentInput = ({ idUser, idPost, setComments }: CommentInputProps)
     if (comment === '') setHeight(40);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
 
     const newComment = { comment: comment.trim(), idUser, idPost };
@@ -43,7 +43,7 @@ export const CommentInput = ({ idUser, idPost, setComments }: CommentInputProps)
 
   return (
     <div className="commentInput__container">
-      <form onSubmit={handleSubmit} className="flex items-center bg-light-grey rounded">
+      <form onSubmit={() => handleSubmit} className="flex items-center bg-light-grey rounded">
         <textarea
           value={comment}
           style={{ height: `${height}px`, maxHeight: '88px' }}

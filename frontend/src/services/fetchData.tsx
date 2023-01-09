@@ -4,7 +4,7 @@ import { env } from '../helpers/env';
 import { postDetails } from '../types/Post';
 import { user } from '../types/User';
 
-export const retrievePosts = async (email:string) => {
+export const retrievePosts = async (email: string) => {
   try {
     if (!email) return;
 
@@ -20,7 +20,7 @@ export const retrievePosts = async (email:string) => {
   }
 };
 
-export const createNewPost = async (post: postDetails | any ) => {
+export const createNewPost = async (post: postDetails | any) => {
   try {
     if (post) {
       const fd = new FormData();
@@ -56,7 +56,7 @@ export const retrieveUser = async (userEmail: string | undefined) => {
   }
 };
 
-export const storeUser = async (body:user) => {
+export const storeUser = async (body: user) => {
   try {
     const data = await fetch(`${env.urlBase}/user`, {
       method: 'POST',
@@ -141,7 +141,7 @@ export const deleteSinglePost = async (idPost: number) => {
   }
 };
 
-export const updateStateOfPost = async (idPost:string) => {
+export const updateStateOfPost = async (idPost: string) => {
   try {
     if (!isNaN(Number(idPost))) {
       const data = await fetch(`${env.urlBase}/posts/update-post/${idPost}`, {

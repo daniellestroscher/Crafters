@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { FilePond, registerPlugin } from 'react-filepond';
@@ -15,6 +15,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType);
 
 import { createNewPost } from '../../services/fetchData';
+import { FilePondFile } from 'filepond';
 
 const initialPostState = {
   title: '',
@@ -26,24 +27,24 @@ export const NewPost = () => {
   const navigate = useNavigate();
   const { user = {email:''} } = useAuth0();
   const [state, setState] = useState(initialPostState);
-  const [image, setImage] = useState<any[]>([]);
+  const [image, setImage] = useState<FilePondFile[]>([]);
   const [toggleBtn, setToggleBtn] = useState<boolean>(false);
 
-  const handleInputNumberChange = (e:any) => {
-    if (e.target.value >= 0) {
-      if (/^\d*\.?\d{0,2}$/.test(e.target.value)) setState({ ...state, price: e.target.value });
+  const handleInputNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (Number(e.target.value) >= 0) {
+      if (/^\d*\.?\d{0,2}$/.test(e.target.value)) setState({ ...state, price: Number(e.target.value)});
     }
   };
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
-  const submitHandler = async (e:any) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     setToggleBtn(true);
-
+  
     if (state.title !== '' && image) {
       const post = {
         userEmail: user.email,
@@ -52,6 +53,7 @@ export const NewPost = () => {
       };
 
       const res = await createNewPost(post);
+      console.log(res);
       setState(initialPostState);
       setImage([]);
 
@@ -138,7 +140,7 @@ export const NewPost = () => {
             </div>
             <div className="formContainer__image">
               <FilePond
-                files={image}
+                files={image.map((file)=> file.file)}
                 allowReorder={true}
                 allowMultiple={false}
                 onupdatefiles={setImage}

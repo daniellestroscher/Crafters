@@ -4,17 +4,10 @@ import { Link } from 'react-router-dom';
 import './UserInfo.css';
 
 import { UserContext } from '../../context/UserContext';
+import { User } from '../../types/User';
 
 type UserInfoProps = {
-  user: {
-    email?: string,
-    email_verified?: boolean,
-    name?: string,
-    nickname?: string,
-    picture?: string,
-    sub?: string,
-    updated_at?: string,
-  };
+  user: User;
   postNumber: number;
   numberOfFavs: number;
 };
