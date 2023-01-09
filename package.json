@@ -1,7 +1,7 @@
 {
   "name": "fullstack-app-knitting-social-media",
   "version": "1.0.0",
-  "description": "Full Stack App for social media App (backend express and Typescript) - (frontend react)",
+  "description": "Full Stack App for social media App (backend express) - (frontend react)",
   "main": "index.js",
   "author": "Gustavo Silva Navarro <gustavo.silva.nav@gmail.com>",
   "license": "MIT",
