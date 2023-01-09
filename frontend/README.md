@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Crafters Social Media App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/66889974/206877385-0bed4b55-f246-429e-94de-adee21912fd5.png" />
+</p>
 
-## Available Scripts
+Crafters is a social media app aimed at helping local crafters to show and share their personal hand made work to the rest of the world, with the possibility to sell their project and make money of it.
 
-In the project directory, you can run:
+## Screenshots
 
-### `npm start`
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/66889974/206877619-d43e29d1-74f8-46c4-a1ec-d49a4747d367.png" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  <img src="https://user-images.githubusercontent.com/66889974/206879053-a53cd71d-d0c3-4c7b-96ca-67ccd45bf1e8.png" />
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  <img src="https://user-images.githubusercontent.com/66889974/206879854-7daf1a53-d0a0-4446-9a37-3a76a6483d69.png" />
+</p>
 
-### `npm test`
+## Getting started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repo
 
-### `npm run build`
+```shell
+git clone https://github.com/GustavoSilvaNavarro/crafters-app.git
+cd crafters-app
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Run command to install dependencies backend and frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```powershell
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend
 
-### `npm run eject`
+1. Server is using SQL database, You should create a database with the name of your preferences and create a .env file with the following keys
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```js
+// DB connection to SQL
+DB_SQL_HOST= //example 127.0.0.1
+DB_SQL_USERNAME=  //example root
+DB_SQL_PORT=  //example 3306
+DB_SQL_PASSWORD= // user's password
+DB_SQL_DATABASENAME=  //database name
+DB_SQL_DIALECT=  //example mysql
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// CLOUDINARY KEYS info provided by cloudinary | https://console.cloudinary.com/users/login#gsc.tab=0
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_PUBLIC_KEY=
+CLOUDINARY_SECRET_KEY=
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+// STRIPE KEYS  Provide by Stripe | https://stripe.com/
+STRIPE_PUBLIC_KEY=
+STRIPE_PRIVATE_KEY=
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+// Auth0 KEYS provided by auth0
+REACT_APP_AUTH0_DOMAIN=
+REACT_APP_AUTH0_CLIENT_ID=
+REACT_APP_AUTH0_UNIQUE_IDENTIFIER=
 
-## Learn More
+// Client domain
+CLIENT_DOMAIN_URL= //example http://localhost:3000
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Run development server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```json
+npm run start:dev
+```
 
-### Code Splitting
+3. Run test/jest environment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```json
+npm test
+```
 
-### Analyzing the Bundle Size
+### Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Create a .env file with the following keys
 
-### Making a Progressive Web App
+```js
+// Auth0 KEYS for client side | https://auth0.com/docs/quickstart/backend/nodejs/interactive
+REACT_APP_AUTH0_DOMAIN=
+REACT_APP_AUTH0_CLIENT_ID=
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. Run react in developer mode
 
-### Advanced Configuration
+```json
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. Run test/jest environment
 
-### Deployment
+```json
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Build with
 
-### `npm run build` fails to minify
+### Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Express](https://expressjs.com/) - Express is a minimal and flexible Node.js web application framework
+- [NodeJs](https://nodejs.org/en/) - An open-source, cross-platform JavaScript runtime environment.
+- [Sequelize](https://sequelize.org/) - ORM for SQL Databases
+- [MariaDB](https://mariadb.org/) - SQL Database
+- [Stripe](https://stripe.com/gb) - Service for payment methods and much more.
+- [Cloudinary](https://console.cloudinary.com) - Media Library that allows to store media.
+- [Typescript](https://www.typescriptlang.org/) - TypeScript is a strongly typed programming language that builds on JavaScript.
+
+### Frontend
+
+- [React](https://reactjs.org/) - Front end library for building user interfaces.
+- [FilePond](https://pqina.nl/filepond/) - A JavaScript library that can upload anything you throw at it.
+- [Auth0](https://auth0.com/) - Service for authentication and authorization.
+- [Tailwindcss](https://tailwindcss.com/) - CSS Framework to style applications.
+- [Framer Motion](https://www.framer.com/motion/) - A production-ready motion library for React.
+
+## Author
+
+- Gustavo Silva Navarro - [GitHub](https://github.com/GustavoSilvaNavarro) - [Linkedin](https://www.linkedin.com/in/gustavo-silva-navarro/)
+- Patrick Hull - [GitHub](https://github.com/pathull) - [Linkedin](https://www.linkedin.com/in/patrick-hull-869a07a4)
+- Danielle Stroscher - [GitHub](https://github.com/daniellestroscher) - [Linkedin](https://www.linkedin.com/in/danielle-stroscher/)
