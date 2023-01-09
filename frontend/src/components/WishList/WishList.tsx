@@ -11,7 +11,7 @@ export const WishList = () => {
 
   useEffect(() => {
     if (userData) {
-      getListWishListByUser(userData.id).then(list => setPostList(list));
+      getListWishListByUser(userData.id as number).then(list => setPostList(list));
     }
   }, [userData]);
 

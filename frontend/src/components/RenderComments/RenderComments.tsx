@@ -45,7 +45,7 @@ export const RenderComments: FC<RenderCommentsProps> = ({ user, comment, setComm
       </div>
 
       {comment.comment ? (
-        post.user.email === userData.email ? (
+        post.user?.email === userData.email ? (
           <button onClick={deleteSingleComment}>
             <MdOutlineClear className="dotsForComments" />
           </button>

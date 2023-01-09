@@ -65,7 +65,7 @@ export const EditUserProfile = () => {
       userUpdate.userPic = '';
     }
 
-    const info = await updateUserInfo(userData.id, userUpdate);
+    const info = await updateUserInfo(userData.id as number, userUpdate);
     console.log(info);
     setState(initialUserState);
     setPicture([]);

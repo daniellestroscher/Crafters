@@ -10,21 +10,22 @@ export type postData = {
 };
 
 export type postDetails = {
-  createdAt: string;
-  description: string;
-  id: number;
-  postPicUrl: string;
+  createdAt?: string;
+  description?: string | undefined;
+  id?: number;
+  postPicUrl?: string;
   price: number;
-  public_image_id: string;
-  sold: boolean;
+  public_image_id?: string;
+  sold?: boolean;
   title: string;
-  updatedAt: string;
-  userEmail: string;
+  updatedAt?: string;
+  userEmail: string | undefined;
+  name?: string;
 
   postPicture?: Blob;
-  user: user;
-  idPost:number;
-  comment:string;
+  user?: user;
+  idPost?: number;
+  comment?: string;
 };
 
 export type newPost = {
@@ -50,11 +51,10 @@ export const defaultPost = {
   user: {
     id: 0,
   },
-  idPost:0,
-  comment:'',
+  idPost: 0,
+  comment: '',
 };
 
-//confirm this data shape
 export type comment = {
   description: string;
   comment: string;
@@ -67,4 +67,16 @@ export type comment = {
 export type likeStatus = {
   like: boolean;
   id?: number;
+};
+
+//for payment
+export type item = {
+  item: {
+    id: number | undefined;
+    name: string;
+    description: string | undefined;
+    price: number;
+    image: Blob | string | undefined;
+  };
+  userId: number | undefined;
 };

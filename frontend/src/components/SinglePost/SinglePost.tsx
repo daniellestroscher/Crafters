@@ -25,7 +25,7 @@ export const SinglePost: FC<SinglePostProps> = ({ post, setPostList }) => {
 
   useEffect(() => {
     if (post && userData) {
-      getSingleWish(userData.id, post.id).then((info:postData) => {
+      getSingleWish(userData.id as number, post.id as number).then((info:postData) => {
         if (info) {
           setStar(info);
         }
@@ -34,7 +34,7 @@ export const SinglePost: FC<SinglePostProps> = ({ post, setPostList }) => {
   }, [post, userData]);
 
   const addToWishList = async () => {
-    const added = await addPostToWishList({ idUser: userData.id, idPost: post.id });
+    const added = await addPostToWishList({ idUser: userData.id as number, idPost: post.id as number });
 
     if (added) {
       setStar(added);
@@ -49,7 +49,7 @@ export const SinglePost: FC<SinglePostProps> = ({ post, setPostList }) => {
     }
 
     if (location.pathname === '/wishlist' && setPostList) {
-      const newList = await getListWishListByUser(userData.id);
+      const newList = await getListWishListByUser(userData.id as number);
       setPostList(newList);
     }
   };

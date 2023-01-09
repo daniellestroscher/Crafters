@@ -21,7 +21,7 @@ export const createNewComment = async (newComment:{idPost: number, idUser: numbe
   }
 };
 
-export const getCommentsByPost = async (id: string | number | undefined) => {
+export const getCommentsByPost = async (id: number | string | undefined) => {
   try {
     if (!isNaN(Number(id))) {
       const allComments = await fetch(`${env.urlBase}/comments/${id}`, {

@@ -44,7 +44,7 @@ export const NewPost = () => {
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     setToggleBtn(true);
-  
+
     if (state.title !== '' && image) {
       const post = {
         userEmail: user.email,
@@ -53,7 +53,6 @@ export const NewPost = () => {
       };
 
       const res = await createNewPost(post);
-      console.log(res);
       setState(initialPostState);
       setImage([]);
 

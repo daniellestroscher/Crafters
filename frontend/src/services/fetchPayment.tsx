@@ -1,6 +1,7 @@
 import { env } from '../helpers/env';
+import { item } from '../types/Post';
 
-export const paymentApi = async (item: { item: { id: any; name: any; description: any; price: any; image: any; }; userId: number | undefined; }) => {
+export const paymentApi = async (item: item) => {
   try {
     const res = await fetch(`${env.urlBase}/purchase/create-checkout-session`, {
       method: 'POST',

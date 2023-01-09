@@ -25,7 +25,7 @@ export const Profile = () => {
     if (user) {
       retrievePosts(user.email as string).then(data => setPosts(data));
       if (userData) {
-        getNumberOfFavs(userData.id).then(result => setNumberOfFavs(result.number));
+        getNumberOfFavs(userData.id as number).then(result => setNumberOfFavs(result.number));
       }
     }
   }, [user, userData]);

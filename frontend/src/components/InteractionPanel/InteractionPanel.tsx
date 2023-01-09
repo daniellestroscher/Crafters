@@ -19,7 +19,7 @@ export const InteractionPanel: FC<InteractionPanelProps> = ({ post }) => {
   const [togglePurchaseBtn, setTogglePurchaseBtn] = useState<boolean>(false);
 
   useEffect(() => {
-    getSingleLike(userData.id, post.id).then(res => {
+    getSingleLike(userData.id as number, post.id as number).then(res => {
       if (!res.error) {
         setLikeStatus(res);
       }
@@ -46,8 +46,8 @@ export const InteractionPanel: FC<InteractionPanelProps> = ({ post }) => {
 
   const likePost = async () => {
     if (likeStatus.like === false) {
-      if (!isNaN(post.id) && !isNaN(userData.id)) {
-        const newLike = await addLikeToPost({ idPost: post.id, idUser: userData.id });
+      if (!isNaN(post.id as number) && !isNaN(userData.id as number)) {
+        const newLike = await addLikeToPost({ idPost: post.id as number, idUser: userData.id as number });
 
         setLikeStatus(newLike);
       }
@@ -74,7 +74,7 @@ export const InteractionPanel: FC<InteractionPanelProps> = ({ post }) => {
           {likeStatus.like ? <AiFillLike /> : <AiOutlineLike />}
         </motion.button>
 
-        {userData.id !== post.user.id && !post.sold && post.price !== 0 ? (
+        {userData.id !== post.user?.id && !post.sold && post.price !== 0 ? (
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

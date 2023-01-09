@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { env } from '../helpers/env';
 import { postDetails } from '../types/Post';
-import { user } from '../types/User';
+import { User, user } from '../types/User';
 
 export const retrievePosts = async (email: string) => {
   try {
@@ -20,12 +20,12 @@ export const retrievePosts = async (email: string) => {
   }
 };
 
-export const createNewPost = async (post: postDetails | any) => {
+export const createNewPost = async (post: postDetails) => {
   try {
     if (post) {
       const fd = new FormData();
       for (const name in post) {
-        fd.append(name, post[name]);
+        fd.append(name, post[name as keyof postDetails] as string);
       }
 
       const data = await fetch(`${env.urlBase}/posts`, {
@@ -74,14 +74,14 @@ export const storeUser = async (body: user) => {
   }
 };
 
-export const updateUserInfo = async (id: number, info: any) => {
+export const updateUserInfo = async (id: number, info: user) => {
   try {
     if (!id) return;
 
     if (info) {
       const formData = new FormData();
       for (const name in info) {
-        formData.append(name, info[name]);
+        formData.append(name, info[name as keyof user] as string);
       }
 
       const data = await axios.put(`${env.urlBase}/user/${id}`, formData);

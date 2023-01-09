@@ -14,6 +14,7 @@ import { RenderComments } from '../RenderComments/RenderComments';
 import { CommentInput } from '../CommentInput/CommentInput';
 import { InteractionPanel } from '../InteractionPanel/InteractionPanel';
 import { postDetails, defaultPost, comment } from '../../types/Post';
+import { user } from '../../types/User';
 
 export const DetailsPost = () => {
   const { id } = useParams();
@@ -45,7 +46,7 @@ export const DetailsPost = () => {
       cancelButtonColor: '#d63031',
     }).then(async result => {
       if (result.isConfirmed) {
-        const res = await deleteSinglePost(post.id);
+        const res = await deleteSinglePost(post.id as number);
         if (res.message === 'Deleted') {
           navigate('/profile');
         }
@@ -69,14 +70,14 @@ export const DetailsPost = () => {
             <div className="detailsPost__infoContainer">
               <div className="detailsInfo">
                 <div className="detailInfo__user">
-                  <img loading="lazy" src={post.user.userPicUrl} alt={post.user.username} />
+                  <img loading="lazy" src={post.user?.userPicUrl} alt={post.user?.username} />
                   <div>
-                    <h4 className="userInfoTitle__username">{post.user.username}</h4>
+                    <h4 className="userInfoTitle__username">{post.user?.username}</h4>
                     <span className="timeFormat__comments">{moment(post.updatedAt).fromNow()}</span>
                   </div>
                 </div>
 
-                {userData.email === post.user.email ? (
+                {userData.email === post.user?.email ? (
                   <button onClick={deletePost}>
                     <FiDelete className="dotsIcon" />
                   </button>
@@ -86,7 +87,7 @@ export const DetailsPost = () => {
                 {post.description || comments.length !== 0 ? (
                   <>
                     {post.description ? (
-                      <RenderComments user={post.user} post={post} comment={post} setComments={undefined} />
+                      <RenderComments user={post.user as user} post={post} comment={post as comment} setComments={undefined} />
                     ) : null}
                     {comments.map((comment: any) => (
                       <RenderComments
@@ -110,7 +111,7 @@ export const DetailsPost = () => {
               <InteractionPanel post={post} />
 
               <div>
-                <CommentInput idUser={userData.id} idPost={post.id} setComments={setComments} />
+                <CommentInput idUser={userData.id as number} idPost={post.id as number} setComments={setComments} />
               </div>
             </div>
           </div>
