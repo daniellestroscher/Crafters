@@ -1,7 +1,7 @@
 import { PostLists } from './PostLists';
 import { mockPostList } from '../../mocks/PostListMocks';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter, useLocation } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ describe('PostList component', () => {
     const mockPosts = mockPostList;
     const context = jest.fn();
 
-    const { getByAltText } = await render(
+    const { getByAltText } = render(
       <UserContext.Provider value={{ context }}>
         <PostLists postsList={mockPosts} />
       </UserContext.Provider>, { wrapper: BrowserRouter }

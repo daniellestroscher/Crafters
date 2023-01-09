@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
 
 import './CommentInput.css';
 
 import { createNewComment, getCommentsByPost } from '../../services/fetchComments';
 
-type Props = {
+type CommentInputProps = {
   idUser: number;
   idPost: number;
   setComments: Function;
 };
 
-export const CommentInput = ({ idUser, idPost, setComments }: Props) => {
+export const CommentInput = ({ idUser, idPost, setComments }: CommentInputProps) => {
   const [comment, setComment] = useState<string>('');
   const [height, setHeight] = useState<number>(40);
 
