@@ -21,7 +21,7 @@ Crafters is a social media app aimed at helping local crafters to show and share
 1. Clone the repo
 
 ```shell
-git clone https://github.com/GustavoSilvaNavarro/crafters-app.git
+git clone git@github.com:daniellestroscher/crafters-with-testing.git
 cd crafters-app
 ```
 
@@ -82,6 +82,8 @@ npm test
 // Auth0 KEYS for client side | https://auth0.com/docs/quickstart/backend/nodejs/interactive
 REACT_APP_AUTH0_DOMAIN=
 REACT_APP_AUTH0_CLIENT_ID=
+REACT_APP_AUTH0_UNIQUE_IDENTIFIER=
+//Remember to add appropriate callback URL's in auth0 set up.
 ```
 
 2. Run react in developer mode
