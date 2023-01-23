@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
 
 import './CommentInput.css';
@@ -25,7 +25,7 @@ export const CommentInput = ({ idUser, idPost, setComments }: CommentInputProps)
     if (comment === '') setHeight(40);
   };
 
-  const handleSubmit = async (e: React.MouseEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newComment = { comment: comment.trim(), idUser, idPost };
@@ -43,18 +43,22 @@ export const CommentInput = ({ idUser, idPost, setComments }: CommentInputProps)
 
   return (
     <div className="commentInput__container">
-      <form onSubmit={() => handleSubmit} className="flex items-center bg-light-grey rounded">
+      <form onSubmit={handleSubmit} className="flex items-center bg-light-grey rounded">
         <textarea
           value={comment}
           style={{ height: `${height}px`, maxHeight: '88px' }}
           onChange={e => setComment(e.target.value)}
-          onKeyUp={keyUpHandler}
+          onKeyUp={e => keyUpHandler(e)}
           className="w-full focus:ring-0 addComment__input"
-          // type="text"
+          //type="text"
           placeholder="Add a comment..."
           required
         ></textarea>
-        <button className="addComment__btn" name="comment-btn" disabled={Boolean(comment) || comment === ''}>
+        <button
+          type='submit'
+          className="addComment__btn" name="comment-btn"
+          //disabled={Boolean(comment) || comment === ''}
+        >
           <FaTelegramPlane />
         </button>
       </form>

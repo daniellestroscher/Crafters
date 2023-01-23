@@ -3,5 +3,5 @@ export const env = {
   clientId: process.env.REACT_APP_AUTH0_CLIENT_ID as string,
   imagePlaceHolder: process.env.PLACEHOLDER_IMAGES as string,
   userImage: process.env.USER_IMAGE,
-  urlBase: 'http://localhost:8080',
+  urlBase: process.env.REACT_APP_BASE_URL,
 };

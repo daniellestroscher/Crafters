@@ -125,12 +125,14 @@ export const NewPost = () => {
                 step="0.01"
                 id="priceInput"
                 name="price"
-                onChange={handleInputNumberChange}
-                value={state.price.toLocaleString('en-US', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-                placeholder=" "
+                onChange={(e) => handleInputNumberChange(e)}
+                value={state.price
+                //   .toLocaleString('en-US', {
+                //   minimumFractionDigits: 2,
+                //   maximumFractionDigits: 2,
+                // })
+                }
+                //placeholder=" "
                 pattern="^\d*\.?\d{0,2}$"
               />
               <label className="formTitle__label" htmlFor="priceInput">
