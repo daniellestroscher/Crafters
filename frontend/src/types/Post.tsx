@@ -1,3 +1,4 @@
+import { FilePondFile } from 'filepond';
 import { user } from './User';
 
 export type postData = {
@@ -29,10 +30,10 @@ export type postDetails = {
 };
 
 export type newPost = {
-  postPicture: any;
+  postPicture: FilePondFile;
   title: string;
   description: string;
-  price: number;
+  price: number | undefined;
   userEmail: string | undefined;
 };
 
